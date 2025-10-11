@@ -1,12 +1,11 @@
 training:
-  data: data.yaml # Path to custom dataset folder
-  model: yolov8n.pt
+  data: /home/dm/Desktop/choijoo_code/simple_code/datasets/data.yaml # Path to custom dataset folder
   epochs: 100
   batch_size: 32
   img_size: 640
   workers: 4
   device: cuda
-  model_version: yolov11n.pt 
+  model: yolo11m.pt 
   stage1_name: experiment_stage1
   stage2_name: experiment_stage2
   
@@ -25,6 +24,7 @@ augmentations:
   degrees: 10.0
   perspective: 0.001
   close_mosaic: 20
+
 
 
 
