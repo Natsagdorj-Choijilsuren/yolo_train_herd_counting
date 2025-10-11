@@ -1,0 +1,33 @@
+training:
+  data: data.yaml # Path to custom dataset folder
+  model: yolov8n.pt
+  epochs: 100
+  batch_size: 32
+  img_size: 640
+  workers: 4
+  device: cuda
+  model_version: yolov11n.pt 
+  stage1_name: experiment_stage1
+  stage2_name: experiment_stage2
+  
+
+augmentations:
+  mosaic: 0.2
+  hsv_h: 0.7
+  hsv_s: 0.7
+  hsv_v: 0.6
+  flipud: 0.0
+  fliplr: 0.5
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  mixup: 0.1
+  degrees: 10.0
+  perspective: 0.001
+  close_mosaic: 20
+
+
+
+
+
+
