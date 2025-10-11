@@ -67,7 +67,7 @@ def train(config: dict,
     )
 
     # Fine-tune the model for the remaining epochs
-    model_path = f"runs/train/{config['training']['stage1_name']}/weights/{args.load_type}.pt"
+    model_path = f"runs/detect/{config['training']['stage1_name']}/weights/{args.load_type}.pt"
     model = YOLO(model_path)  # Load the best or last model
     last_train_epoch = config['training']['epochs'] - pretrain_epoch
 
