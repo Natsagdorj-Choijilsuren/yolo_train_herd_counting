@@ -1,7 +1,9 @@
 import argparse 
 import yaml 
+import ultralytics 
 
 from ultralytics import YOLO  
+from ultralytics.data import YOLODataset
 from pathlib import Path
 
 #local imports 
@@ -20,14 +22,14 @@ def parse_args()->argparse.Namespace:
     parser.add_argument(
         "--config", 
         type=str, 
-        default="configs/train_config.yaml", 
+        default="src/config/train_config.yaml", 
         help="Path to the training configuration file"
     )
 
     parser.add_argument(
         "--load_type", 
         type=str, 
-        cchoices=["best", "last"],
+        choices=["best", "last"],
         default="best",
         help="Type of weights to load: 'best' or 'last'"
     )
@@ -39,19 +41,18 @@ def train(config: dict,
           args: argparse.Namespace)->None:
     # Load the YOLO model
     model = YOLO(config['training']['model'])  
-    pretrain_epoch = config['training']['epochs']*0.9
-
+    pretrain_epoch = int(config['training']['epochs']*0.9)
+    ultralytics.data.dataset.YOLODataset = lambda *args, **kwargs: AlbumentationYOLODataset(*args, use_albumentations=True, **kwargs)
     model.train(
         data=config['training']['data'],
         epochs=pretrain_epoch,
-        batch_size=config['training']['batch_size'],
+        batch=config['training']['batch_size'],
         imgsz=config['training']['img_size'],
         workers=config['training']['workers'],
         device=config['training']['device'],
-        name=config['training']['name'],
-        albu=albumentations_transform,
+        name=config['training']['stage1_name'],
         # use dataugmentation 
-        mosaic=config['augmentations'],
+        mosaic=config['augmentations']['mosaic'],
         hsv_h= config['augmentations']['hsv_h'],
         hsv_s= config['augmentations']['hsv_s'],
         hsv_v= config['augmentations']['hsv_v'],
@@ -62,7 +63,6 @@ def train(config: dict,
         perspective= config['augmentations']['perspective'],
         flipud= config['augmentations']['flipud'],
         fliplr= config['augmentations']['fliplr'],
-        copy_paste= config['augmentations']['copy_paste'],
         close_mosaic= config['augmentations']['close_mosaic']
     )
 
@@ -71,6 +71,7 @@ def train(config: dict,
     model = YOLO(model_path)  # Load the best or last model
     last_train_epoch = config['training']['epochs'] - pretrain_epoch
 
+    ultralytics.data.dataset.YOLODataset = lambda *args, **kwargs: AlbumentationYOLODataset(*args, use_albumentations=False, **kwargs)
     model.train(
         data=config['training']['data'],
         epochs=last_train_epoch,
@@ -78,8 +79,7 @@ def train(config: dict,
         imgsz=config['training']['img_size'],
         workers=config['training']['workers'],
         device=config['training']['device'],
-        name=config['training']['name'],
-        albu=None, 
+        name=config['training']['stage2_name'], 
         augment=False # Disable augmentations during fine-tuning
     )
 
