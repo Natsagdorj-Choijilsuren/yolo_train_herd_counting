@@ -4,3 +4,5 @@
 *.pyd
 .env 
 .venv
+.ruff_cache 
+
