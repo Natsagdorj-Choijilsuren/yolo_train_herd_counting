@@ -1,6 +1,5 @@
 training:
-  data: /home/dm/Desktop/choijoo_code/simple_code/datasets/data.yaml # Path to custom dataset folder
-  epochs: 100
+  data: /home/dm/Desktop/choijoo_code/whole_herd_counting/datasets/data.yaml 
   batch_size: 32
   img_size: 640
   workers: 4
