@@ -24,6 +24,13 @@ def get_args():
         help="Video source (default is 0 for webcam).")
     
     parser.add_argument(
+        "--dest",
+        type=str, 
+        default="1",
+        help="Result video file"
+    )
+
+    parser.add_argument(
         "--model", type=str, 
         default="yolov8n-seg.pt", 
         help="Path to the YOLOv8 segmentation model.")
@@ -79,7 +86,7 @@ def track_count_video(args):
         return
     video_writer = get_video_writer(
         cap, 
-        output_path=args.source)
+        output_path=args.dest)
 
     while True:
         ret, frame = cap.read()
@@ -109,10 +116,6 @@ def track_count_video(args):
                 d = get_sign((cx, cy), LINE_START, LINE_END) 
 
                 
-
-
-                  
-
     cap.release()
     cv2.destroyAllWindows()
 
@@ -146,7 +149,7 @@ class HerdCounter:
         
         video_writer = get_video_writer(
             cap, 
-            output_path=args.source)
+            output_path=args.dest)
         
         while True:
             ret, frame = cap.read()
