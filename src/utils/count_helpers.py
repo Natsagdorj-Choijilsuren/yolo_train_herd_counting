@@ -1,5 +1,5 @@
 import numpy as np
-from typing import Tuple, List, Optional, Dict
+from typing import Tuple
 
 
 def get_sign(
