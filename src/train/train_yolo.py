@@ -82,7 +82,7 @@ def train(config: dict, args: argparse.Namespace) -> None:
     model.train(
         data=config["training"]["data"],
         epochs=last_train_epoch,
-        batch_size=config["training"]["batch_size"],
+        batch=config["training"]["batch_size"],
         imgsz=config["training"]["img_size"],
         workers=config["training"]["workers"],
         device=config["training"]["device"],
