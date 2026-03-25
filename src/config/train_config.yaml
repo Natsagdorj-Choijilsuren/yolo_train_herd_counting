@@ -9,6 +9,11 @@ training:
   stage2_name: experiment_stage2
   epochs: 100
   
+export:
+  enabled: true
+  weights: best
+  int8: false
+  half: false
 
 augmentations:
   mosaic: 0.2
@@ -24,7 +29,6 @@ augmentations:
   degrees: 10.0
   perspective: 0.001
   close_mosaic: 20
-
 
 
 
