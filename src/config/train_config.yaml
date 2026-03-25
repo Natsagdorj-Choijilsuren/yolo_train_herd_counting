@@ -4,7 +4,7 @@ training:
   img_size: 640
   workers: 4
   device: cuda
-  model: yolo11m.pt 
+  model: yolo26n.pt 
   stage1_name: experiment_stage1
   stage2_name: experiment_stage2
   epochs: 100
