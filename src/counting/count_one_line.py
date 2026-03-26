@@ -4,7 +4,7 @@ import numpy as np
 import ultralytics
 
 from ultralytics import YOLO
-from typing import Tuple, List
+from typing import Tuple, List, Dict 
 
 # local imports
 from src.utils.count_helpers import get_sign
