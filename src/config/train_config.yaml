@@ -1,6 +1,6 @@
 training:
   data: /home/dm/Desktop/choijoo_code/whole_herd_counting/datasets/data.yaml 
-  batch_size: 32
+  batch_size: 64 
   img_size: 640
   workers: 4
   device: cuda
