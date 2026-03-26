@@ -26,7 +26,7 @@ def get_args():
         help="Video source (default is 0 for webcam).",
     )
 
-    parser.add_argument("--dest", type=str, default="1", help="Result video file")
+    parser.add_argument("--dest", type=str, default="out.mp4", help="Result video file")
 
     parser.add_argument(
         "--model",
@@ -104,8 +104,6 @@ def track_count_video(args):
                 d = get_sign((cx, cy), LINE_START, LINE_END)
 
     cap.release()
-    cv2.destroyAllWindows()
-
 
 class HerdCounter:
     def __init__(self, args: argparse.Namespace) -> None:
@@ -196,7 +194,7 @@ class HerdCounter:
 
 if __name__ == "__main__":
     args = get_args()
-    #herd_counter = HerdCounter(args)
-    #count_dict = herd_counter.count_video(args)
-    track_count_video(args)
+    herd_counter = HerdCounter(args)
+    count_dict = herd_counter.count_video(args)
+    #track_count_video(args)
     print("Final Counts:", count_dict)

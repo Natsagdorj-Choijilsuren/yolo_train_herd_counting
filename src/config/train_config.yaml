@@ -7,7 +7,7 @@ training:
   model: yolo26n.pt 
   stage1_name: experiment_stage1
   stage2_name: experiment_stage2
-  epochs: 10
+  epochs: 100
   
 export:
   enabled: true
