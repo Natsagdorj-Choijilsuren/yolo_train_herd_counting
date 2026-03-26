@@ -196,6 +196,7 @@ class HerdCounter:
 
 if __name__ == "__main__":
     args = get_args()
-    herd_counter = HerdCounter(args)
-    count_dict = herd_counter.count_video(args)
+    #herd_counter = HerdCounter(args)
+    #count_dict = herd_counter.count_video(args)
+    track_count_video(args)
     print("Final Counts:", count_dict)
