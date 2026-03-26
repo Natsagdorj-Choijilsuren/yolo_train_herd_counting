@@ -84,7 +84,7 @@ def track_count_video(args):
             break
 
         results = model.track(
-            frame, conf=args.conf, iou=args.iou, imgsz=640, tracking="bytetrack.yaml"
+            frame, conf=args.conf, iou=args.iou, imgsz=640, tracker="bytetrack.yaml"
         )
 
         if results[0].boxes is not None and results[0].boxes.id is not None:
@@ -143,7 +143,7 @@ class HerdCounter:
                 conf=args.conf,
                 iou=args.iou,
                 imgsz=640,
-                tracking="bytetrack.yaml",
+                tracker="bytetrack.yaml",
             )
 
             if results[0].boxes is not None and results[0].boxes.id is not None:
