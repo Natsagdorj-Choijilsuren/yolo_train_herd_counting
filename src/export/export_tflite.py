@@ -10,7 +10,7 @@ def export_trained_model_to_tflite(
     default_weights: str = "best",
 ) -> str:
     weights_name = export_cfg.get("weights", default_weights)
-    model_path = f"runs/detect/{stage2_name}/weights/{weights_name}.pt"
+    model_path = f"{stage2_name}/weights/{weights_name}.pt"
 
     model = YOLO(model_path)
     return model.export(
